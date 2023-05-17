@@ -28,6 +28,8 @@ function hideTwoFingerMessage() {
   message.style.display = "none";
 }
 
+
+
 fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
   .then((response) => response.json())
   .then((data) => {
@@ -99,6 +101,8 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
     map.dragRotate.disable();
     // disable map rotation using touch rotation gesture
     map.touchZoomRotate.disableRotation();
+    // disable map zoom when using scroll
+		map.scrollZoom.disable();
 
     // Add zoom controls to the map
     const navControl = new mapboxgl.NavigationControl({
