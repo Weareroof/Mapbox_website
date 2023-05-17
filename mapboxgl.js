@@ -116,6 +116,7 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
       map.resize();
     });
 
+    
     //Génerer des marqueurs par Roof
     data.records.forEach((record) => {
       const lat = record.fields["Latitude"];
@@ -136,10 +137,12 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
       carousel.className = "carousel";
 
       // Add the label to the popupContent
-      const label = document.createElement("div");
-      label.className = "slider-label";
-      popupContent.appendChild(label);
-      label.innerHTML = `<p>${record.fields["Chambre_dispo"]} Places restantes</p>`;
+      if (record.fields["Statut"] !== "Prochainement") {
+        const label = document.createElement("div");
+        label.className = "slider-label";
+        label.innerHTML = `<p>${record.fields["Chambre_dispo"]} Places restantes</p>`;
+        popupContent.appendChild(label);
+      }
 
       // Vérifiez si le champ "Slider_Roof" existe dans l'enregistrement
       if (record.fields["Slider_Roof"]) {
@@ -155,7 +158,7 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
           img.style.height = "auto";
 
           const imageLink = document.createElement("a");
-          imageLink.href = "https://example.com"; // Replace with the desired link
+          imageLink.href = record.fields["url_slider"]; // Replace with the desired link
           imageLink.target = "_blank"; // Open link in a new tab
           imageLink.appendChild(img);
 
@@ -187,7 +190,6 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
               <p class="ville-cl__price-text _map">Tout compris</p>
           </div>
       </div>
-
       `;
 
       const popup = new mapboxgl.Popup({
@@ -213,17 +215,20 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
         }
 
         setTimeout(() => {
-          const carouselElement = document.querySelector(".carousel");
-          new Flickity(carouselElement, {
-            cellAlign: "left",
-            contain: true,
-            wrapAround: true,
-            autoPlay: 3000,
-            pauseAutoPlayOnHover: true,
-            imagesLoaded: true,
-            setGallerySize: false,
-            pageDots: false
-          });
+            const carouselElement = document.querySelector(".carousel");
+            // Only initialize Flickity if there is more than one image
+            if (carouselElement.children.length > 1) {
+              new Flickity(carouselElement, {
+                  cellAlign: "left",
+                  contain: true,
+                  wrapAround: true,
+                  autoPlay: 3000,
+                  pauseAutoPlayOnHover: true,
+                  imagesLoaded: true,
+                  setGallerySize: false,
+                  pageDots: false
+              });
+            }
         }, 0);
       });
     });
