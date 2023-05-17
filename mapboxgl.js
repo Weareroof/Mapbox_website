@@ -28,7 +28,7 @@ function hideTwoFingerMessage() {
   message.style.display = "none";
 }
 
-fetch("https://node-server-roof.ew.r.appspot.com/airtable")
+fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
   .then((response) => response.json())
   .then((data) => {
     const isMobile = window.innerWidth <= 768;
