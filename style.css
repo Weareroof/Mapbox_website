@@ -1,0 +1,167 @@
+#map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+  
+  .map-container {
+    height: 500px;
+    width: 500px;
+    position: relative;
+  }
+  
+  .marker-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .marker-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  
+  .mapboxgl-popup-close-button {
+    display: none;
+  }
+  
+  /* Controle Zoom  */ 
+  .mapboxgl-ctrl-group .mapboxgl-ctrl-zoom-in, 
+  .mapboxgl-ctrl-group .mapboxgl-ctrl-zoom-out {
+    width: 60px; 
+    height: 60px; 
+    margin-top: 15px;
+    margin-right: 15px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #284630; 
+  }
+  
+  .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon{
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20id%3D%22Calque_2%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20567.47%20567.47%22%3E%0A%20%20%3Cg%20id%3D%22Calque_1-2%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23faf4df%22%20d%3D%22m238.93%2C0v238.93H0v89.6h238.93v238.93h89.6v-238.93h238.93v-89.6h-238.93V0h-89.6Z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+  }
+  
+  .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon{
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20id%3D%22Calque_2%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20567.47%2089.6%22%3E%0A%3Cg%20id%3D%22Calque_1-2%22%3E%0A%3Cpath%20fill%3D%22%23faf4df%22%20d%3D%22m567.47%2C89.6V0H0v89.6h567.47Z%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+  }
+   
+  .mapboxgl-ctrl-group:not(:empty){
+    box-shadow: none;
+  }
+  
+  .mapboxgl-ctrl button:not(:disabled):hover {
+    background: #e3572c;
+  }
+  
+  
+  /* Popup content */
+  .mapboxgl-popup-content {
+    width: fit-content;
+    padding: 0px;
+    border-radius: 10px;
+    font-family: "Suisseintl", sans-serif;
+  }
+  
+  .custom-popup {
+    max-width: 400px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  
+  /* Carousel Photo Roof - Flickity Js */
+  .carousel {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .flickity-viewport {
+    border-radius: 10px 10px 0px 0px;
+  }
+  
+  .flickity-button {
+    background: #faf4dfbd;
+  }
+  .flickity-button-icon {
+    fill: #e3572c;
+  }
+  
+  .flickity-prev-next-button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .slider-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #284630;
+    color: #faf4df;
+    padding: 5px 10px;
+    z-index: 1;
+  }
+  
+  
+  /* Message utiliser deux doigts sur Mobile */
+  #two-finger-message {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 16px;*
+  }
+  
+  
+  /* Responsive */
+  @media (min-width: 769px) {
+    .custom-popup {
+      position: static;
+      left: auto;
+      bottom: auto;
+      transform: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .custom-popup {
+      max-width: 100% !important;
+      left: 50%;
+      top: 15px;
+      bottom: auto;
+      transform: translate(-50%, 0) !important;
+    }
+  
+    .mapboxgl-popup-tip {
+      display: none;
+    }
+  
+    /* On cache les controle de Zoom sur mobile */
+    .mapboxgl-ctrl-group{
+      display: none;
+    }
+  }
+  
+  
+  
