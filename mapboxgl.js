@@ -1,5 +1,5 @@
 mapboxgl.accessToken =
-  "pk.eyJ1Ijoid2VhcmVyb29mIiwiYSI6ImNsaGttdnVjODB0ZzkzbG54ZGw2Z3NtZ2UifQ.qDWLaaAwV1UMkykKPquwaA";
+  "pk.eyJ1Ijoid2VhcmVyb29mIiwiYSI6ImNsM2lrOGFxcTAxZGQzY3V3emtlc2Y3ejcifQ.0jyyt8PZQnXeaEjXpNk2zQ";
 
 function createMarkerIcon(imageUrl) {
   const markerIcon = document.createElement("div");
