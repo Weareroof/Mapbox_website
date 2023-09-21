@@ -29,12 +29,12 @@ function hideTwoFingerMessage() {
 }
 
 
-
+//On fait appel à notre Proxy pour récupérer les donnees de la table Roof sur Airtable sans publier nos cles API
 fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
   .then((response) => response.json())
   .then((data) => {
-    const isMobile = window.innerWidth <= 768;
-
+  
+    //Doc Mapbox: https://docs.mapbox.com/mapbox-gl-js/guides/
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/weareroof/clh0oknc700if01r024bu6hgp",
@@ -45,6 +45,10 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
       dragRotate: false,
       dragPan: !isMobile
     });
+
+    //Gerer le responsive - On veut que sur mobile, l'utilisateur soit obligé d'utiliser deux doigts pour naviguer sur la carte.
+    //Il peut ainsi continuer de scroller sur la page avec un doigt sans que la carte interactive ne pose problème
+    const isMobile = window.innerWidth <= 768; 
 
     if (isMobile) {
       let touchStartTime;
@@ -121,7 +125,7 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
     });
 
     
-    //Génerer des marqueurs par Roof
+    //Avec la data recuperer depuis le proxy, on va generer des marqueurs par Roof
     data.records.forEach((record) => {
       const lat = record.fields["Latitude"];
       const lng = record.fields["Longitude"];
@@ -138,13 +142,16 @@ fetch("https://node-server-roof-rlx44ukc4q-od.a.run.app/airtable/Roof")
 
       const popupContent = document.createElement("div");
       const carousel = document.createElement("div");
-      carousel.className = "carousel";
+      carousel.className = "carousel";    
+
+      //Adapter le texte en fonction du nombre de chambre restante
+      var number_place = record.fields["Chambre_dispo"] === 0 ? "Place restante" : " Places restantes" 
 
       // Add the label to the popupContent
       if (record.fields["Statut"] !== "Prochainement") {
         const label = document.createElement("div");
         label.className = "slider-label";
-        label.innerHTML = `<p>${record.fields["Chambre_dispo"]} Places restantes</p>`;
+        label.innerHTML = `<p>${record.fields["Chambre_dispo"]} ${number_place}</p>`;
         popupContent.appendChild(label);
       }
 
