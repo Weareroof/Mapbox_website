@@ -1,2 +1,2 @@
 # Mapbox_website
-Connecter airtable avec la carte interactive des Roofs sur le site web. 
+Afficher les roofs sur une carte de façon dynamique (via Airtable)
